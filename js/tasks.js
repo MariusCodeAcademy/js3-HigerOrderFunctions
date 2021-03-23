@@ -1,6 +1,7 @@
 "use strict";
 const people = [
   {
+    id: "it51",
     name: "Jonas",
     surname: "Jonaitis",
     sex: "male",
@@ -8,8 +9,10 @@ const people = [
     income: 1200,
     married: false,
     hasCar: false,
+    devices: ["laptop", "phone"],
   },
   {
+    id: "it52",
     name: "Severija",
     surname: "Piktutytė",
     sex: "female",
@@ -17,8 +20,10 @@ const people = [
     income: 1300,
     married: false,
     hasCar: true,
+    devices: ["tablet", "phone"],
   },
   {
+    id: "it53",
     name: "Valdas",
     surname: "Vilktorinas",
     sex: "male",
@@ -26,8 +31,10 @@ const people = [
     income: 0,
     married: false,
     hasCar: false,
+    devices: ["laptop", "tablet", "phone", "drone"],
   },
   {
+    id: "it54",
     name: "Virginijus",
     surname: "Uostauskas",
     sex: "male",
@@ -35,8 +42,10 @@ const people = [
     income: 2400,
     married: true,
     hasCar: true,
+    devices: ["tablet", "phone"],
   },
   {
+    id: "it55",
     name: "Samanta",
     surname: "Uostauskienė",
     sex: "female",
@@ -44,8 +53,10 @@ const people = [
     income: 1200,
     married: true,
     hasCar: true,
+    devices: ["laptop", "phone"],
   },
   {
+    id: "it56",
     name: "Janina",
     surname: "Stalautinskienė",
     sex: "female",
@@ -53,6 +64,7 @@ const people = [
     income: 364,
     married: false,
     hasCar: false,
+    devices: ["laptop", "tablet", "phone"],
   },
 ];
 
@@ -227,3 +239,4 @@ people.sort((a, b) => {
 });
 
 console.log("after sort", people);
+console.table(people, ["age", "name", "income"]);
