@@ -127,7 +127,54 @@ console.log("drivingFemaleCount", drivingFemaleCount);
 console.log({ drivingMaleCount, drivingFemaleCount });
 
 // 7. Pagal people masyvą, naudojant Array.prototype.map, suformuokite masyva su objektais, kurie turės savybes sex ir income
+console.clear();
+console.log(
+  "7. Pagal people masyvą, naudojant Array.prototype.map, suformuokite masyva su objektais, kurie turės savybes sex ir income"
+);
+
+function lytisIrPajamos(person) {
+  const result = {
+    sex: person.sex,
+    income: person.income,
+  };
+  return result;
+}
+
+const sexAndIncome = people.map(lytisIrPajamos);
+
+console.log("sexAndIncome", sexAndIncome);
+
 // 8. Pagal people masyvą, naudojant Array.prototype.map, suformuokite masyva pakeičiant savybę 'income' į 'salary'
+// spread operator.
+
+const renameIncome = function (person) {
+  //   const renamed = {
+  //     name: person.name,
+  //     surname: person.surname,
+  //     sex: person.sex,
+  //     age: person.age,
+  //     salary: person.income,
+  //     married: person.married,
+  //     hasCar: person.hasCar,
+  //   };
+  // = zenklas neperkopijuoja reference tipo reiksmiu
+  //   const localPersonCopy = person;
+  //
+  const localPersonCopy = { ...person }; // sukuriam seklia kopija kad nepakeisti orginalo
+  localPersonCopy.salary = person.income;
+  delete localPersonCopy.income;
+  return localPersonCopy;
+};
+console.clear();
+console.log(
+  "8. Pagal people masyvą, naudojant Array.prototype.map, suformuokite masyva pakeičiant savybę"
+);
+
+console.log(people.map(renameIncome));
+console.log(people);
+
 // 9. Pagal people masyvą, naudojant Array.prototype.map, suformuokite masyva kuriame nebūtų lyties, vardo ir pavardės
+
 // 10. Pagal people masyvą, naudojant Array.prototype.map, suformuokite masyvą kur savybės name ir surname būtų pakeistos viena savybe - fullname
-// 11. parasyti funkcija kuri is isrikiuoja masyva pagal amziu
+
+// 11. extra parasyti funkcija kuri is isrikiuoja masyva pagal amziu
