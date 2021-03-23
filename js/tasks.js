@@ -13,7 +13,7 @@ const people = [
     name: "Severija",
     surname: "Piktutytė",
     sex: "female",
-    age: 26,
+    age: 126,
     income: 1300,
     married: false,
     hasCar: true,
@@ -195,4 +195,35 @@ console.table(people);
 
 // 10. Pagal people masyvą, naudojant Array.prototype.map, suformuokite masyvą kur savybės name ir surname būtų pakeistos viena savybe - fullname
 
+let nameSurnameArr = people.map((person) => {
+  // nusikopojuoti objekta
+  const localPerson = { ...person };
+  delete localPerson.name;
+  delete localPerson.surname;
+  // sukuriam nauja savybe
+  localPerson.fullname = `${person.name} ${person.surname}`;
+  return localPerson;
+});
+console.log("10 uzd ===========");
+
+console.table(nameSurnameArr);
+
 // 11. extra parasyti funkcija kuri is isrikiuoja masyva pagal amziu
+// https://www.w3schools.com/jsref/jsref_sort.asp
+
+console.clear();
+
+console.log(people);
+
+// tinka skaitinem reiksmem
+people.sort((a, b) => b.age - a.age);
+
+// tinka ir textam
+people.sort((a, b) => {
+  //   if (a.surname < b.surname) return 1;
+  //   return -1;
+
+  return a.surname < b.surname ? 1 : -1;
+});
+
+console.log("after sort", people);
