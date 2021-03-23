@@ -174,6 +174,24 @@ console.log(people.map(renameIncome));
 console.log(people);
 
 // 9. Pagal people masyvą, naudojant Array.prototype.map, suformuokite masyva kuriame nebūtų lyties, vardo ir pavardės
+function noSexNameSurname(person) {
+  // pasidarom vietine localia seklia kopija
+  const localPerson = { ...person };
+  // istrinam ko neturi buti galutiniam masyve
+  delete localPerson.sex;
+  delete localPerson.surname;
+  delete localPerson.name;
+  // grazinam nutrinta objekta
+  return localPerson;
+}
+console.clear();
+console.log(
+  "9. Pagal people masyvą, naudojant Array.prototype.map, suformuokite masyva kuriame nebūtų lyties, vardo ir pavardė"
+);
+
+let nutrintas = people.map(noSexNameSurname);
+console.table(nutrintas);
+console.table(people);
 
 // 10. Pagal people masyvą, naudojant Array.prototype.map, suformuokite masyvą kur savybės name ir surname būtų pakeistos viena savybe - fullname
 
