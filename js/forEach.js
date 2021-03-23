@@ -8,6 +8,7 @@ const add5 = function (value) {
 };
 
 //https://www.w3schools.com/jsref/jsref_foreach.asp
+
 numbers.forEach(add5);
 
 // su anonimine funkcija
