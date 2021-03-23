@@ -50,3 +50,13 @@ const simplePeople = [
     age: 45,
   },
 ];
+
+// sukurti nauja masyva kurime butu vardas - metai
+
+const kitoksMasyvas = simplePeople.map(makeNameAge);
+
+function makeNameAge(person, index) {
+  return `index ${index}: ${person.name} - ${person.age}`;
+}
+console.clear();
+console.log("kitoksMasyvas", kitoksMasyvas);

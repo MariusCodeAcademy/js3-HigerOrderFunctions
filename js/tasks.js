@@ -125,3 +125,9 @@ console.log("drivingMaleCount", drivingMaleCount);
 console.log("drivingFemaleCount", drivingFemaleCount);
 // for primitive values galim taip isloginti.
 console.log({ drivingMaleCount, drivingFemaleCount });
+
+// 7. Pagal people masyvą, naudojant Array.prototype.map, suformuokite masyva su objektais, kurie turės savybes sex ir income
+// 8. Pagal people masyvą, naudojant Array.prototype.map, suformuokite masyva pakeičiant savybę 'income' į 'salary'
+// 9. Pagal people masyvą, naudojant Array.prototype.map, suformuokite masyva kuriame nebūtų lyties, vardo ir pavardės
+// 10. Pagal people masyvą, naudojant Array.prototype.map, suformuokite masyvą kur savybės name ir surname būtų pakeistos viena savybe - fullname
+// 11. parasyti funkcija kuri is isrikiuoja masyva pagal amziu
