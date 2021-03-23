@@ -69,14 +69,59 @@ console.log("1. Naudojant Array.prototype.forEach atspausdinti visus vyrus.");
 // panaudoti printMalesOnly su foreach ant people masyvo
 // masyvo pavadinimas . forEach( funkcija 'callback' )
 people.forEach(printMalesOnly);
+console.log(
+  "==================================================================="
+);
+console.log("");
 
 // 2. Naudojant Array.prototype.forEach atspausdinti visas moteris jaunesnes nei 35 metai.
+const printYoungFemales = function (person) {
+  if (person.sex === "female" && person.age < 35) console.log(person);
+};
+console.log(
+  "2. Naudojant Array.prototype.forEach atspausdinti visas moteris jaunesnes nei 35 metai."
+);
+people.forEach(printYoungFemales);
 
 // 3. Naudojant Array.prototype.forEach atspausdinti visus žmones kurie turi mašinas.
 
 // 4. Naudojant Array.prototype.forEach atspausdinti visus susituokusius žmones.
+console.clear();
+console.log(
+  "4. Naudojant Array.prototype.forEach atspausdinti visus susituokusius žmones."
+);
+
+people.forEach(function (person) {
+  if (person.married) console.log(person);
+});
 
 // 5. Naudojant Array.prototype.forEach atspausdinti visų vairuojančių žmonių lytį.
+function printSexIfHasCar(person) {
+  if (person.hasCar) console.log(person.sex);
+}
+console.clear();
+console.log(
+  "5. Naudojant Array.prototype.forEach atspausdinti visų vairuojančių žmonių lytį."
+);
+people.forEach(printSexIfHasCar);
 
 // 6. Naudojant Array.prototype.forEach ir globalius kintamuosius,
 //    suskaičiuoti vairuojančių moterų ir vyrų kiekius, bei juos atspausdinti.
+
+// globalus kintamais
+let drivingMaleCount = 0;
+let drivingFemaleCount = 0;
+
+const countDrivers = function (person) {
+  if (person.hasCar) {
+    // visi kurie turi automobilius
+    // terenary operator
+    person.sex === "male" ? drivingMaleCount++ : drivingFemaleCount++;
+  }
+};
+people.forEach(countDrivers);
+
+console.log("drivingMaleCount", drivingMaleCount);
+console.log("drivingFemaleCount", drivingFemaleCount);
+// for primitive values galim taip isloginti.
+console.log({ drivingMaleCount, drivingFemaleCount });
