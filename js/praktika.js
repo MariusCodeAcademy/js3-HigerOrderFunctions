@@ -152,7 +152,7 @@ function giveMeNameAndIncomeArr() {
   let naujasVienasObjektas = {};
 
   // susikurti tuscia masyva
-  people.forEach(function (person) {
+  people.forEach((person) => {
     // jei alga maziau uz 1200 mes nepridedam sitos reiksmes
     if (person.income > 1200) {
       naujasVienasObjektas = {
@@ -166,18 +166,34 @@ function giveMeNameAndIncomeArr() {
     }
   });
   // ir i ji atrinkti tik tai ko mums reikia { name: asda, alga: 34423 }
-  console.log(atrinktuReiksmiuMasyvas);
+  console.log({ atrinktuReiksmiuMasyvas });
   return atrinktuReiksmiuMasyvas;
 }
 giveMeNameAndIncomeArr();
 
 // P4 atlikti P3 bet su map()
+function giveMeNameAndIncomeArrMap() {
+  const atrinktuReiksmiuMasyvas = [];
 
-// P5 atspausdinti zmoniu sarasa kurie turi bent du daiktus
+  people.map((person) => {
+    return person.income > 1200
+      ? atrinktuReiksmiuMasyvas.push({ name: person.name, alga: person.income })
+      : null;
+    // return { name: person.name, alga: person.income };
+  });
+  return atrinktuReiksmiuMasyvas;
+}
+giveMeNameAndIncomeArrMap();
+console.log(giveMeNameAndIncomeArrMap());
+
+// P5 atspausdinti zmoniu sarasa kurie turi bent tris daiktus
 
 // P6 grazinti nauja objektu masyva kuriame butu vardas ir turimi prietaisai
 
 // P7 Suskaiciuoti kiek zmoniu turi Tabletus?
+// array.indexOf('koIeskom') grazina index jei rado
+// grazina -1 jei nerado
+// array.includes('koIeskom') grazina true jei rado ir false jei ne
 
 // P8 Parasyti funkicja kuri grazina prietaisu paduotu argumentu skaiciu visame people masyve.
 // pvz howManyDevices('laptop') // grazina kiek zmoniu turi laptopus
