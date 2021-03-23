@@ -142,6 +142,34 @@ console.log(getMeMaleAverageIncome());
 // P2 -Parasyti funkcija kuri naudojant forEach atspausdintu varda ir zodi 'Vairuoja' arba "Nevairuoja"
 
 // P3 Parasyti funkcija kuri naudojant forEach grazintu nauja masyva kurio objektai turetu varda ir kiek jie uzdirba. Atspausdinti tik tuos kurie uzdirba daugiau nei 1200
+// [ {
+// name: vardas
+// alga: 39393
+//} ]
+function giveMeNameAndIncomeArr() {
+  // forEach negrazina reiksmes bet galim dirbti su isoriniai arba globaliais kintamaisiais
+  const atrinktuReiksmiuMasyvas = [];
+  let naujasVienasObjektas = {};
+
+  // susikurti tuscia masyva
+  people.forEach(function (person) {
+    // jei alga maziau uz 1200 mes nepridedam sitos reiksmes
+    if (person.income > 1200) {
+      naujasVienasObjektas = {
+        name: person.name,
+        alga: person.income,
+      };
+      // console.log(naujasVienasObjektas);
+
+      // prideti objekta i savo atrinka masyva
+      atrinktuReiksmiuMasyvas.push(naujasVienasObjektas);
+    }
+  });
+  // ir i ji atrinkti tik tai ko mums reikia { name: asda, alga: 34423 }
+  console.log(atrinktuReiksmiuMasyvas);
+  return atrinktuReiksmiuMasyvas;
+}
+giveMeNameAndIncomeArr();
 
 // P4 atlikti P3 bet su map()
 
