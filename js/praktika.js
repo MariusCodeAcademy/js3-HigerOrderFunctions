@@ -68,7 +68,7 @@ const people = [
   },
 ];
 
-console.table(people, ["name", "devices", "age"]);
+console.table(people, ["name", "id", "age"]);
 
 // P1 - Parasyti funkcija kuri grazina visu zmoniu pajamu vidurki.
 
@@ -236,6 +236,13 @@ const countDevices = function (whatToFind) {
   } else {
     console.log(`radom ${whatToFind}:`, totalDevicesFound);
   }
+  // terenary su grazinimu veikia sitaip
+  return (
+    totalDevicesFound === 0
+      ? `${whatToFind} prietaisu mes neradom`
+      : `radom ${whatToFind}:`,
+    totalDevicesFound
+  );
 };
 countDevices("laptop");
 
@@ -243,7 +250,46 @@ countDevices("laptop");
 // pvz howManyDevices('laptop') // grazina kiek zmoniu turi laptopus
 
 // P9 parasyti funkcija kuri grazina objekta padavus jai id reiksme.
+function getPersonById(argumentId) {
+  people.forEach(function (personObj) {
+    // ar einama personObj id reksme yra lygi argumentui argumentId
+    // if personObj.id === argumentId
+    if (personObj.id === argumentId) {
+      // kai tik rasiu objekta galiu grazinti ji ir nutraukti fn vygyma
+      console.log("radau", personObj);
+      return personObj;
+    }
+  });
+  // iki cia daeisim tik jeigu neradom reiksmes
+  // console.log("Atsiprasom bert tokio id neradom", argumentId);
+}
+getPersonById("it53");
+getPersonById("it513");
 
 // P10 parasyti funkcija kuri grazina nauja masyva sulietuvinus name, surname, ir age dalis.
+const ltNamesSurnamesAges = function () {
+  let locaLpersonObjCopy;
+
+  const ltArr = people.map(function (personObj) {
+    // reikia pasidaryti vietine kopija person obj
+    locaLpersonObjCopy = { ...personObj };
+    // perkopijuojam vertes
+    locaLpersonObjCopy.vardas = personObj.name;
+    locaLpersonObjCopy.pavarde = personObj.surname;
+    locaLpersonObjCopy.amzius = personObj.age;
+    // istrinam nereikalingus
+    delete locaLpersonObjCopy.name;
+    delete locaLpersonObjCopy.surname;
+    delete locaLpersonObjCopy.age;
+    // grazinam kopija su lt reiksmem
+    return locaLpersonObjCopy;
+  });
+  console.log("ltNamesSurnamesAges", ltArr);
+
+  return ltArr;
+};
+
+ltNamesSurnamesAges();
+console.log("orginalas", people);
 
 // P11 Parasyti funkcija kuri grazina sarasa masyvo pavidalu zmoniu kurie turi daugiau negu 2 prietaisus.
