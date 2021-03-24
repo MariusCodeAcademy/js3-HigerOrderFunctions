@@ -222,6 +222,23 @@ printMePepople3D();
 // grazina -1 jei nerado
 // array.includes('koIeskom') grazina true jei rado ir false jei ne
 
+// sukuriam funkcija
+const countDevices = function (whatToFind) {
+  let totalDevicesFound = 0;
+  // sukam cikla
+  people.forEach((personObj) => {
+    // ciklo metu ziurim ar einamas asmens objektas turi 'tablet'
+    // jei zmogus turi tablet mes pridedam 1 prie bendros tablet sumos
+    personObj.devices.includes(whatToFind) ? (totalDevicesFound += 1) : null;
+  });
+  if (totalDevicesFound === 0) {
+    console.log(`${whatToFind} prietaisu mes neradom`);
+  } else {
+    console.log(`radom ${whatToFind}:`, totalDevicesFound);
+  }
+};
+countDevices("laptop");
+
 // P8 Parasyti funkicja kuri grazina prietaisu paduotu argumentu skaiciu visame people masyve.
 // pvz howManyDevices('laptop') // grazina kiek zmoniu turi laptopus
 
