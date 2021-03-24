@@ -175,13 +175,15 @@ giveMeNameAndIncomeArr();
 function giveMeNameAndIncomeArrMap() {
   const atrinktuReiksmiuMasyvas = [];
 
-  people.map((person) => {
-    return person.income > 1200
-      ? atrinktuReiksmiuMasyvas.push({ name: person.name, alga: person.income })
-      : null;
-    // return { name: person.name, alga: person.income };
-  });
-  return atrinktuReiksmiuMasyvas;
+  return people
+    .map((person) => {
+      return person.income > 1200
+        ? { name: person.name, alga: person.income }
+        : null;
+      // return { name: person.name, alga: person.income };
+    })
+    .filter((newObj) => newObj !== null);
+  // return atrinktuReiksmiuMasyvas;
 }
 giveMeNameAndIncomeArrMap();
 console.log(giveMeNameAndIncomeArrMap());
