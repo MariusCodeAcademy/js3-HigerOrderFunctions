@@ -68,7 +68,7 @@ const people = [
   },
 ];
 
-console.table(people, ["name", "income"]);
+console.table(people, ["name", "devices", "age"]);
 
 // P1 - Parasyti funkcija kuri grazina visu zmoniu pajamu vidurki.
 
@@ -190,6 +190,31 @@ console.log(giveMeNameAndIncomeArrMap());
 
 // P5 atspausdinti zmoniu sarasa kurie turi bent tris daiktus
 
+// sukurti funkcija
+function printMePepople3D() {
+  let kiekDaiktuTuriAsmuo;
+  // sukti cikla
+  people.forEach(function (personObj) {
+    kiekDaiktuTuriAsmuo = personObj.devices.length;
+    // ar asmuo turi 3 ir daugiau daiktu
+    if (kiekDaiktuTuriAsmuo >= 3) {
+      console.log(personObj.name + " " + personObj.surname);
+    }
+  });
+
+  // atspausdinti zmogu jei jis turi 3 ir daugiau daiktu
+  // array.legth - kiek yra el masyve
+}
+// console.clear();
+printMePepople3D();
+
+//
+//
+//
+//
+//
+//
+//
 // P6 grazinti nauja objektu masyva kuriame butu vardas ir turimi prietaisai
 
 // P7 Suskaiciuoti kiek zmoniu turi Tabletus?
@@ -204,4 +229,4 @@ console.log(giveMeNameAndIncomeArrMap());
 
 // P10 parasyti funkcija kuri grazina nauja masyva sulietuvinus name, surname, ir age dalis.
 
-// P11 Parasyti funkcija kuri grazina sarasa zmoniu kurie turi daugiau negu 2 prietaisus.
+// P11 Parasyti funkcija kuri grazina sarasa masyvo pavidalu zmoniu kurie turi daugiau negu 2 prietaisus.

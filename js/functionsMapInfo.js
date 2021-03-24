@@ -52,7 +52,7 @@ returnl5e(10);
 returnl5eA(20);
 console.log("returnl5e(10)", returnl5e(10));
 // ================================================================================
-
+// indx          0   1  2  3
 const numbers = [1, -2, 1, 4];
 
 // parasyti funcija kuri grazina 3 masyvo el
@@ -61,7 +61,13 @@ const getThird = function () {
   return numbers[2];
 };
 
+const getMeIndexValue = function (index) {
+  return numbers[index - 1];
+};
+
 console.log(getThird());
+
+console.log("getMeIndexValue(3)", getMeIndexValue(3));
 
 // grazinti masyva kuriame butu tik teigiamos reiksmes
 const positives = function () {
@@ -94,3 +100,21 @@ const positivesArrrowMap = () => {
 };
 
 console.log("positivesArrrowMap()", positivesArrrowMap());
+
+// Kuo skiriasi anoninme funkcija sukurta iskart nuo tos kuria naudojam aprasyta atskirai
+const doubleValues = function () {
+  // funkcija sukurta galioti tik sioje funkcijoje
+  function makeDouble(val) {
+    return val * 2;
+  }
+  // anonimine funkcija sukurta funcijos argumento vietoje
+  // return numbers.map(function (val) {
+  //   return val * 2;
+  // });
+
+  // map funkcijai paduosim is anksto aprasyta funkcija
+  // kai perduodam is ankso aprasyta funkcija tai nerasom () nes perduodame nuoroda i funkcija
+  return numbers.map(makeDouble);
+};
+console.log("doubleValues()", doubleValues());
+console.log("doubleValues", doubleValues);
