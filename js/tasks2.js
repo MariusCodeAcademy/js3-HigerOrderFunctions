@@ -198,7 +198,10 @@ const students = [
     ],
   },
 ];
+console.groupCollapsed("pradinis Studentu masyvas");
 console.table(students);
+console.groupEnd();
+console.log("");
 
 /*
     1. Peržvelgti students masyvą, jeigu patogu susibraižyti ant lapo duoenų struktūras, kad būtų aiškiau kas kam priklauso.
@@ -236,23 +239,23 @@ function getModuleAverage(module) {
 // console.log("getModuleAverage", students[0]);
 
 /**
- * this returns all modules average
+ * this returns all modules average of one student given as argument
  *
- * @param {array} modules
+ * @param {obj} student
  *
  * @return {number} - average of module
  */
-function getAllModuleAvg(modules) {
+function getStudentModulesAverage(student) {
   let total = 0;
-  modules.forEach(function (module) {
+  student.modules.forEach(function (module) {
     total += getModuleAverage(module);
   });
-  let avg = total / modules.length;
+  let avg = total / student.modules.length;
   // Math.round(num * 100) / 100
   return Math.round(avg * 100) / 100;
 }
-// console.log("getAllModuleAvg", students[0].modules);
-getAllModuleAvg(students[0].modules);
+// console.log("getStudentModulesAverage", students[0].modules);
+getStudentModulesAverage(students[0]);
 //  / -------------------------------------------------------- Užduočių atlikimas -------------------------------------------------------------
 // 1. Suskaičiuojame ir atrenkame į naują masyvą, visų studentų vidurkius
 const getAllAverages = function () {
@@ -260,10 +263,60 @@ const getAllAverages = function () {
   // gauta visu moduliu vidurki sudeti i masyva
   return students.map(function (student) {
     // gauti visu moduliu vidurki
-    return getAllModuleAvg(student.modules);
+    return getStudentModulesAverage(student);
   });
 };
 let allAverages = getAllAverages();
-console.log("allAverages", allAverages);
 
-// 2. Atrenkame visus Informatikos fakulteto studentus
+// 2. Atrenkame visus Informatikos fakulteto studentus // filter
+
+// funkcija
+// filtruojam studentu masyva
+// ir jei studentas yra Informatikos fakulteto studentas mes norim grazinti kaip reiksme
+// jei ne tai ne
+let getInfoFacultyStudents = function () {
+  return students.filter(function (studentObj) {
+    // grazinti true jei studentas yra Informatikos fakulteto studentas
+    if (studentObj.faculty === "Informatikos fakultetas") return true;
+    // trumpesni var
+    // return studentObj.faculty === "Informatikos fakultetas"
+  });
+};
+let infoFacultyStudents = getInfoFacultyStudents();
+
+// 3. Atrenkame visus Chemijos fakulteto studentus
+let getChemFacultyStudents = function () {
+  return students.filter(function (studentObj) {
+    // grazinti true jei studentas yra Informatikos fakulteto studentas
+    if (studentObj.faculty === "Chemijos fakultetas") return true;
+    // trumpesni var
+    // return studentObj.faculty === "Informatikos fakultetas"
+  });
+};
+let chemFacultyStudents = getChemFacultyStudents();
+
+// 4. Atrenkame visus Elektros ir elektronikos fakulteto studentus
+
+// 5. Atrenkame visų Informatikos fakulteto studentų vidurkius
+
+// 6. Atrenkame visų Chemijos fakulteto studentų vidurkius
+
+// 7. Atrenkame visų Elektros ir elektronikos fakulteto studentų vidurkius
+
+//  ========================= Rezultatai ==============================
+console.group(
+  "1. Suskaičiuojame ir atrenkame į naują masyvą, visų studentų vidurkius"
+);
+console.log(allAverages);
+console.groupEnd();
+console.log("");
+
+console.group(" 2. Atrenkame visus Informatikos fakulteto studentus // filter");
+console.table(infoFacultyStudents);
+console.groupEnd();
+console.log("");
+
+console.group(" 2. Atrenkame visus Chemijos fakulteto studentus // filter");
+console.table(chemFacultyStudents);
+console.groupEnd();
+console.log("");
