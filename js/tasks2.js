@@ -247,6 +247,7 @@ function getModuleAverage(module) {
  */
 function getStudentModulesAverage(student) {
   let total = 0;
+  // debugger;
   student.modules.forEach(function (module) {
     total += getModuleAverage(module);
   });
@@ -255,18 +256,32 @@ function getStudentModulesAverage(student) {
   return Math.round(avg * 100) / 100;
 }
 // console.log("getStudentModulesAverage", students[0].modules);
-getStudentModulesAverage(students[0]);
-//  / -------------------------------------------------------- Užduočių atlikimas -------------------------------------------------------------
+// getStudentModulesAverage(students[0]);
+
+/**
+ * Returns array of students that are in given @facultyName faculty
+ *
+ * @param {string} facultyName
+ * @returns {array} array of filtered students
+ */
+function selectSutudensOfGivenFaculty(facultyName) {
+  return students.filter(function (studentObj) {
+    return studentObj.faculty === facultyName;
+  });
+}
+
+//  / ------------------------ Užduočių atlikimas ---------------------------------------
+//
 // 1. Suskaičiuojame ir atrenkame į naują masyvą, visų studentų vidurkius
-const getAllAverages = function () {
+const getAllAverages = function (masyvasKurioVidurkiSkaiciuojam) {
   // gauti vieno modulio vidurki
   // gauta visu moduliu vidurki sudeti i masyva
-  return students.map(function (student) {
+  return masyvasKurioVidurkiSkaiciuojam.map(function (student) {
     // gauti visu moduliu vidurki
     return getStudentModulesAverage(student);
   });
 };
-let allAverages = getAllAverages();
+let allAverages = getAllAverages(students);
 
 // 2. Atrenkame visus Informatikos fakulteto studentus // filter
 
@@ -274,30 +289,30 @@ let allAverages = getAllAverages();
 // filtruojam studentu masyva
 // ir jei studentas yra Informatikos fakulteto studentas mes norim grazinti kaip reiksme
 // jei ne tai ne
-let getInfoFacultyStudents = function () {
-  return students.filter(function (studentObj) {
-    // grazinti true jei studentas yra Informatikos fakulteto studentas
-    if (studentObj.faculty === "Informatikos fakultetas") return true;
-    // trumpesni var
-    // return studentObj.faculty === "Informatikos fakultetas"
-  });
-};
-let infoFacultyStudents = getInfoFacultyStudents();
+
+let infoFacultyStudents = selectSutudensOfGivenFaculty(
+  "Informatikos fakultetas"
+);
 
 // 3. Atrenkame visus Chemijos fakulteto studentus
-let getChemFacultyStudents = function () {
-  return students.filter(function (studentObj) {
-    // grazinti true jei studentas yra Informatikos fakulteto studentas
-    if (studentObj.faculty === "Chemijos fakultetas") return true;
-    // trumpesni var
-    // return studentObj.faculty === "Informatikos fakultetas"
-  });
-};
-let chemFacultyStudents = getChemFacultyStudents();
+
+let chemFacultyStudents = selectSutudensOfGivenFaculty("Chemijos fakultetas");
 
 // 4. Atrenkame visus Elektros ir elektronikos fakulteto studentus
 
+let electroFacultyStudents = selectSutudensOfGivenFaculty(
+  "Elektros ir elektronikos fakultetas"
+);
+
 // 5. Atrenkame visų Informatikos fakulteto studentų vidurkius
+function getInfoFakAvg() {
+  // pirma issviltruoti kad gauti tik Inf fak studentus
+  let infoStudents = selectSutudensOfGivenFaculty("Informatikos fakultetas");
+  // paskaiciuoti issfiltruoto masyvo studentu vidurkius
+  let averagesInfoFak = getAllAverages(infoStudents);
+  return averagesInfoFak;
+}
+let infoFakAvgArr = getInfoFakAvg();
 
 // 6. Atrenkame visų Chemijos fakulteto studentų vidurkius
 
@@ -316,7 +331,27 @@ console.table(infoFacultyStudents);
 console.groupEnd();
 console.log("");
 
-console.group(" 2. Atrenkame visus Chemijos fakulteto studentus // filter");
+console.group(" 3. Atrenkame visus Chemijos fakulteto studentus // filter");
 console.table(chemFacultyStudents);
 console.groupEnd();
 console.log("");
+
+console.group(
+  " 4. Atrenkame visus Elektros ir elektronikos fakulteto studentus // filter"
+);
+console.table(electroFacultyStudents);
+console.groupEnd();
+console.log("");
+
+console.group("5. Atrenkame visų Informatikos fakulteto studentų vidurkius");
+console.log(infoFakAvgArr);
+console.groupEnd();
+console.log("");
+
+// 8 grazinti objektu masyva kuriame butu vardas ir vidurkis
+// { name: 'james', avg: 7.8}
+
+// 9 grazinti tik studentus kuriu vidurkiai yra aukstesni uz 8
+// grazinti varda fakulteta ir vidurki
+
+// 10 isrikiuoti 8 puntu gauna masyva pagal varda, ir pagal vidurki
