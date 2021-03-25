@@ -273,14 +273,14 @@ function selectSutudensOfGivenFaculty(facultyName) {
 //  / ------------------------ Užduočių atlikimas ---------------------------------------
 //
 // 1. Suskaičiuojame ir atrenkame į naują masyvą, visų studentų vidurkius
-const getAllAverages = function (masyvasKurioVidurkiSkaiciuojam) {
+function getAllAverages(masyvasKurioVidurkiSkaiciuojam) {
   // gauti vieno modulio vidurki
   // gauta visu moduliu vidurki sudeti i masyva
   return masyvasKurioVidurkiSkaiciuojam.map(function (student) {
     // gauti visu moduliu vidurki
     return getStudentModulesAverage(student);
   });
-};
+}
 let allAverages = getAllAverages(students);
 
 // 2. Atrenkame visus Informatikos fakulteto studentus // filter
