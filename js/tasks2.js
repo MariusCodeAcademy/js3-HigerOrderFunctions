@@ -216,6 +216,54 @@ console.table(students);
     Taip pat galima ir labai skatintina naudoti jau aprašytas funkcijas kitų užduočių sprendimui. (Code reuse)
   */
 
+//  / ----------- Pagalbines funkcijos --------------------------------------------
+/**
+ * calculates and returns average of given module
+ * @param {object} module
+ *
+ * @return {number} - average of module
+ */
+function getModuleAverage(module) {
+  let sum = 0;
+  // console.log(module.marks);
+
+  module.marks.forEach((mark) => {
+    sum += mark;
+  });
+  let avg = sum / module.marks.length;
+  return avg;
+}
+// console.log("getModuleAverage", students[0]);
+
+/**
+ * this returns all modules average
+ *
+ * @param {array} modules
+ *
+ * @return {number} - average of module
+ */
+function getAllModuleAvg(modules) {
+  let total = 0;
+  modules.forEach(function (module) {
+    total += getModuleAverage(module);
+  });
+  let avg = total / modules.length;
+  // Math.round(num * 100) / 100
+  return Math.round(avg * 100) / 100;
+}
+// console.log("getAllModuleAvg", students[0].modules);
+getAllModuleAvg(students[0].modules);
 //  / -------------------------------------------------------- Užduočių atlikimas -------------------------------------------------------------
 // 1. Suskaičiuojame ir atrenkame į naują masyvą, visų studentų vidurkius
+const getAllAverages = function () {
+  // gauti vieno modulio vidurki
+  // gauta visu moduliu vidurki sudeti i masyva
+  return students.map(function (student) {
+    // gauti visu moduliu vidurki
+    return getAllModuleAvg(student.modules);
+  });
+};
+let allAverages = getAllAverages();
+console.log("allAverages", allAverages);
+
 // 2. Atrenkame visus Informatikos fakulteto studentus
