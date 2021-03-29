@@ -278,10 +278,18 @@ function selectSutudensOfGivenFaculty(facultyName) {
  * @returns {array} selected students
  */
 function selectStudentsByCourse(course, studensArr) {
+  // pasitikrinti ar course yra 1-4
+  if (course > 4 || course < 1) {
+    console.error("Kurso reiksme turetu buti 1-4");
+    // nutraukiam tolimesti funkcijos vygdyma
+    return;
+  }
+
   let antroKursStud = studensArr.filter(function (student) {
     // reikia grazinti true kai studentas yra 2 kurso
     if (student.course === course) {
       return true;
+    } else {
     }
   });
   return antroKursStud;
@@ -406,9 +414,10 @@ let secondCouresStudArr = getSecondCouresStudArr();
 
 // 11a funkcija kuria grazina argumentu paduoto kurso studentus ir argumentu pasiima stud masyva
 let firstCouseStudens = selectStudentsByCourse(1, students);
+
 // 11b apriboti argumento reiksme kad galimos yra tik 1-4 jei paduodama reksme uz situ reziu
 // console.error pranesame kad tokia reiksme negalima
-
+let fithCouseStudens = selectStudentsByCourse(4, students);
 //  ========================= Rezultatai ==============================
 console.group(
   "1. Suskaičiuojame ir atrenkame į naują masyvą, visų studentų vidurkius"
@@ -466,6 +475,11 @@ console.log("");
 
 console.group("11a. Pirmo kurso studentai");
 console.log(firstCouseStudens);
+console.groupEnd();
+console.log("");
+
+console.group("11b. Negalimo kurso studentai");
+console.log(fithCouseStudens);
 console.groupEnd();
 console.log("");
 
