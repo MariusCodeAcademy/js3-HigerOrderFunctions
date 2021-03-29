@@ -315,8 +315,44 @@ function getInfoFakAvg() {
 let infoFakAvgArr = getInfoFakAvg();
 
 // 6. Atrenkame visų Chemijos fakulteto studentų vidurkius
+function getChemFakAvg() {
+  // atrinkti studentus
+  let chemStudents = selectSutudensOfGivenFaculty("Chemijos fakultetas");
+  // console.log("chemStudents", chemStudents);
+  // paskaiciuojam vidurkius
+  let avgArr = getAllAverages(chemStudents);
+  return avgArr;
+}
+let chemStudAvg = getChemFakAvg();
 
 // 7. Atrenkame visų Elektros ir elektronikos fakulteto studentų vidurkius
+function getStudentAveragesByFak(faculty) {
+  let fakStudents = selectSutudensOfGivenFaculty(faculty);
+  return getAllAverages(fakStudents);
+}
+let elecFakStudentsAvg = getStudentAveragesByFak(
+  "Elektros ir elektronikos fakultetas"
+);
+
+// 8 grazinti objektu masyva kuriame butu vardas ir vidurkis
+// { name: 'james', avg: 7.8}
+
+function studNameAndAvg() {
+  let res = students.map(function (studObj) {
+    // console.log(
+    //   "vardas",
+    //   studObj.name,
+    //   "vidurkis:",
+    //   getStudentModulesAverage(studObj)
+    // );
+    return {
+      name: studObj.name,
+      avg: getStudentModulesAverage(studObj),
+    };
+  });
+  return res;
+}
+let studNameAndAvgResult = studNameAndAvg();
 
 //  ========================= Rezultatai ==============================
 console.group(
@@ -348,8 +384,20 @@ console.log(infoFakAvgArr);
 console.groupEnd();
 console.log("");
 
-// 8 grazinti objektu masyva kuriame butu vardas ir vidurkis
-// { name: 'james', avg: 7.8}
+console.group("6. Atrenkame visų Chemijos studentų vidurkius");
+console.log(chemStudAvg);
+console.groupEnd();
+console.log("");
+
+console.group("7. Atrenkame visų Elektronikos studentų vidurkius");
+console.log(elecFakStudentsAvg);
+console.groupEnd();
+console.log("");
+
+console.group("8. vardas ir vidurkis");
+console.log(studNameAndAvgResult);
+console.groupEnd();
+console.log("");
 
 // 9 grazinti tik studentus kuriu vidurkiai yra aukstesni uz 8
 // grazinti varda fakulteta ir vidurki
