@@ -354,6 +354,25 @@ function studNameAndAvg() {
 }
 let studNameAndAvgResult = studNameAndAvg();
 
+// 9 grazinti tik studentus kuriu vidurkiai yra aukstesni uz 8
+// grazinti varda fakulteta ir vidurki
+function getAllGoodStudens() {
+  // isviltruoti studentus kuriu vidurkiai didesni ux 8
+  let goodStudArr = students.filter(
+    (studObj) => getStudentModulesAverage(studObj) > 8
+  );
+  console.log("goodStudArr", goodStudArr);
+
+  // per isfiltruota masyva sukam map ir grazinam farda fakulteta ir vidurki
+  let above8stud = goodStudArr.map((studObj) => {
+    return `${studObj.name} ${studObj.faculty}, ${getStudentModulesAverage(
+      studObj
+    )}`;
+  });
+  return above8stud;
+}
+let above8 = getAllGoodStudens();
+
 //  ========================= Rezultatai ==============================
 console.group(
   "1. Suskaičiuojame ir atrenkame į naują masyvą, visų studentų vidurkius"
@@ -396,6 +415,11 @@ console.log("");
 
 console.group("8. vardas ir vidurkis");
 console.log(studNameAndAvgResult);
+console.groupEnd();
+console.log("");
+
+console.group("9. Geri studentai");
+console.log(above8);
 console.groupEnd();
 console.log("");
 
