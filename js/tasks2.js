@@ -3,7 +3,7 @@ const students = [
     name: "Panatėja",
     surname: "Sulindytė",
     faculty: "Informatikos fakultetas",
-    course: 2,
+    course: 3,
     modules: [
       {
         title: "Operacinės sistemos",
@@ -36,7 +36,7 @@ const students = [
     name: "Serbentautas",
     surname: "Bordiūras",
     faculty: "Informatikos fakultetas",
-    course: 1,
+    course: 4,
     modules: [
       {
         title: "Matematika",
@@ -270,6 +270,23 @@ function selectSutudensOfGivenFaculty(facultyName) {
   });
 }
 
+/**
+ * Selects faculty students defined by @param course
+ *
+ * @param {number} course
+ * @param {array} studensArr
+ * @returns {array} selected students
+ */
+function selectStudentsByCourse(course, studensArr) {
+  let antroKursStud = studensArr.filter(function (student) {
+    // reikia grazinti true kai studentas yra 2 kurso
+    if (student.course === course) {
+      return true;
+    }
+  });
+  return antroKursStud;
+}
+
 //  / ------------------------ Užduočių atlikimas ---------------------------------------
 //
 // 1. Suskaičiuojame ir atrenkame į naują masyvą, visų studentų vidurkius
@@ -373,6 +390,25 @@ function getAllGoodStudens() {
 }
 let above8 = getAllGoodStudens();
 
+// 11 uzduotis parasyti funkcija kuri grazina tik 2 kurso studentus
+function getSecondCouresStudArr() {
+  let antroKursStud = students.filter(function (student) {
+    // reikia grazinti true kai studentas yra 2 kurso
+    if (student.course === 2) {
+      return true;
+    }
+    // return student.course === 2;
+  });
+
+  return antroKursStud;
+}
+let secondCouresStudArr = getSecondCouresStudArr();
+
+// 11a funkcija kuria grazina argumentu paduoto kurso studentus ir argumentu pasiima stud masyva
+let firstCouseStudens = selectStudentsByCourse(1, students);
+// 11b apriboti argumento reiksme kad galimos yra tik 1-4 jei paduodama reksme uz situ reziu
+// console.error pranesame kad tokia reiksme negalima
+
 //  ========================= Rezultatai ==============================
 console.group(
   "1. Suskaičiuojame ir atrenkame į naują masyvą, visų studentų vidurkius"
@@ -423,7 +459,14 @@ console.log(above8);
 console.groupEnd();
 console.log("");
 
-// 9 grazinti tik studentus kuriu vidurkiai yra aukstesni uz 8
-// grazinti varda fakulteta ir vidurki
+console.group("11. Antro kurso studentai");
+console.log(secondCouresStudArr);
+console.groupEnd();
+console.log("");
+
+console.group("11a. Pirmo kurso studentai");
+console.log(firstCouseStudens);
+console.groupEnd();
+console.log("");
 
 // 10 isrikiuoti 8 puntu gauna masyva pagal varda, ir pagal vidurki
