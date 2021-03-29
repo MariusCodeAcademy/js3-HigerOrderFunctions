@@ -418,14 +418,32 @@ let firstCouseStudens = selectStudentsByCourse(1, students);
 // 11b apriboti argumento reiksme kad galimos yra tik 1-4 jei paduodama reksme uz situ reziu
 // console.error pranesame kad tokia reiksme negalima
 let fithCouseStudens = selectStudentsByCourse(4, students);
-//  ========================= Rezultatai ==============================
-console.group(
-  "1. Suskaičiuojame ir atrenkame į naują masyvą, visų studentų vidurkius"
-);
-console.log(allAverages);
-console.groupEnd();
-console.log("");
 
+// 10 isrikiuoti 8 puntu gauna masyva pagal varda, ir pagal vidurki
+
+//  ========================= Rezultatai ==============================
+// printType default reiksme kuri naudojamas jei nepaduota isskviecian funkcija
+function printMe(header, data, printType = "log") {
+  console.group(header);
+  // apriboti kad printType galetu buti tik 'log', 'table', 'warn'
+  if (["log", "table", "warn"].includes(printType)) console[printType](data);
+  else console.error(printType + " tokio spausdinimo tipo nepalaikome");
+
+  console.groupEnd();
+  console.log("");
+}
+console.warn(allAverages);
+
+printMe(
+  "1. Suskaičiuojame ir atrenkame į naują masyvą, visų studentų vidurkius",
+  allAverages
+);
+
+printMe(
+  " 2. Atrenkame visus Informatikos fakulteto studentus // filter",
+  infoFacultyStudents,
+  "table1"
+);
 console.group(" 2. Atrenkame visus Informatikos fakulteto studentus // filter");
 console.table(infoFacultyStudents);
 console.groupEnd();
@@ -483,4 +501,17 @@ console.log(fithCouseStudens);
 console.groupEnd();
 console.log("");
 
-// 10 isrikiuoti 8 puntu gauna masyva pagal varda, ir pagal vidurki
+console.group(
+  "10 isrikiuoti 8 puntu gauna masyva pagal varda, ir pagal vidurki"
+);
+console.table(studNameAndAvgResult);
+studNameAndAvgResult.sort((a, b) => b.avg - a.avg);
+console.table(studNameAndAvgResult);
+// rikiuoja pagal varda
+studNameAndAvgResult.sort((a, b) => {
+  return a.name > b.name ? -1 : 1;
+});
+console.table(studNameAndAvgResult);
+
+console.groupEnd();
+console.log("");

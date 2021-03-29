@@ -45,3 +45,35 @@ let avgReduce = numbers.reduce((accumalator, currentValue) => {
 }, 0);
 
 console.log("avgReduce", avgReduce);
+
+// Sum object values su reduce ================================================================
+
+const persons = [
+  {
+    name: "Bob",
+    town: "Vilnius",
+    age: 43,
+  },
+  {
+    name: "Hen",
+    town: "Kaunas",
+    age: 33,
+  },
+  {
+    name: "John",
+    town: "Kaunas",
+    age: 19,
+  },
+  {
+    name: "Michael",
+    town: "Klaipeda",
+    age: 23,
+  },
+];
+
+// parasyti reduce funkcija kuri susumuoja amziu
+let ages = persons.reduce((accum, personObj) => {
+  return accum + personObj.age;
+}, 0);
+
+console.log("ages", ages);
