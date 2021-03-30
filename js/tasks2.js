@@ -255,6 +255,7 @@ function getStudentModulesAverage(student) {
   // Math.round(num * 100) / 100
   return Math.round(avg * 100) / 100;
 }
+
 function getStudentModulesAverageReduce(student) {
   // debugger;
   let avg = student.modules.reduce(
