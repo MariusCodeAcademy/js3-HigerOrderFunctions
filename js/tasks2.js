@@ -422,17 +422,41 @@ let fithCouseStudens = selectStudentsByCourse(4, students);
 // 10 isrikiuoti 8 puntu gauna masyva pagal varda, ir pagal vidurki
 
 //  ========================= Rezultatai ==============================
+/**
+ * Checks if given @param data has any values
+ * if data is null, undefined, [], {} then we consider it empty
+ *
+ * @param {mixed} data
+ *
+ * @returns {boolean} true / false
+ */
+function isEmpty(data) {
+  if (data === null || data === undefined || data.length === 0) return true;
+  // patikrinti ar tai yra objektas
+  // Objeck.keys({}) grazina masyva su objekto raktu reiksmem
+  // galima naudoti JSON.stringify({})
+  if (data.constructor === Object && Object.keys(data).length === 0)
+    return true;
+  return false;
+}
+
 // printType default reiksme kuri naudojamas jei nepaduota isskviecian funkcija
 function printMe(header, data, printType = "log") {
   console.group(header);
-  // apriboti kad printType galetu buti tik 'log', 'table', 'warn'
-  if (["log", "table", "warn"].includes(printType)) console[printType](data);
-  else console.error(printType + " tokio spausdinimo tipo nepalaikome");
-
+  // patikrinti ar data turi duomenu
+  if (!isEmpty(data)) {
+    // apriboti kad printType galetu buti tik 'log', 'table', 'warn'
+    if (["log", "table", "warn"].includes(printType)) console[printType](data);
+    else console.error(printType + " tokio spausdinimo tipo nepalaikome");
+  } else {
+    console.warn("Duomenu nera");
+  }
   console.groupEnd();
   console.log("");
 }
+
 console.warn(allAverages);
+allAverages = {};
 
 printMe(
   "1. Suskaičiuojame ir atrenkame į naują masyvą, visų studentų vidurkius",
@@ -442,64 +466,42 @@ printMe(
 printMe(
   " 2. Atrenkame visus Informatikos fakulteto studentus // filter",
   infoFacultyStudents,
-  "table1"
+  "table"
 );
-console.group(" 2. Atrenkame visus Informatikos fakulteto studentus // filter");
-console.table(infoFacultyStudents);
-console.groupEnd();
-console.log("");
 
-console.group(" 3. Atrenkame visus Chemijos fakulteto studentus // filter");
-console.table(chemFacultyStudents);
-console.groupEnd();
-console.log("");
-
-console.group(
-  " 4. Atrenkame visus Elektros ir elektronikos fakulteto studentus // filter"
+printMe(
+  "3. Atrenkame visus Chemijos fakulteto studentus // filter",
+  chemFacultyStudents,
+  "table"
 );
-console.table(electroFacultyStudents);
-console.groupEnd();
-console.log("");
 
-console.group("5. Atrenkame visų Informatikos fakulteto studentų vidurkius");
-console.log(infoFakAvgArr);
-console.groupEnd();
-console.log("");
+printMe(
+  " 4. Atrenkame visus Elektros ir elektronikos fakulteto studentus // filter",
+  electroFacultyStudents,
+  "table"
+);
 
-console.group("6. Atrenkame visų Chemijos studentų vidurkius");
-console.log(chemStudAvg);
-console.groupEnd();
-console.log("");
+printMe(
+  "5. Atrenkame visų Informatikos fakulteto studentų vidurkius",
+  infoFakAvgArr
+);
 
-console.group("7. Atrenkame visų Elektronikos studentų vidurkius");
-console.log(elecFakStudentsAvg);
-console.groupEnd();
-console.log("");
+printMe("6. Atrenkame visų Chemijos studentų vidurkius", chemStudAvg);
 
-console.group("8. vardas ir vidurkis");
-console.log(studNameAndAvgResult);
-console.groupEnd();
-console.log("");
+printMe(
+  "7. Atrenkame visų Elektronikos studentų vidurkius",
+  elecFakStudentsAvg
+);
 
-console.group("9. Geri studentai");
-console.log(above8);
-console.groupEnd();
-console.log("");
+printMe("8. vardas ir vidurkis", studNameAndAvgResult);
 
-console.group("11. Antro kurso studentai");
-console.log(secondCouresStudArr);
-console.groupEnd();
-console.log("");
+printMe("9. Geri studentai", above8);
 
-console.group("11a. Pirmo kurso studentai");
-console.log(firstCouseStudens);
-console.groupEnd();
-console.log("");
+printMe("11. Antro kurso studentai", secondCouresStudArr);
 
-console.group("11b. Negalimo kurso studentai");
-console.log(fithCouseStudens);
-console.groupEnd();
-console.log("");
+printMe("11a. Pirmo kurso studentai", firstCouseStudens);
+
+printMe("11b. Negalimo kurso studentai", fithCouseStudens);
 
 console.group(
   "10 isrikiuoti 8 puntu gauna masyva pagal varda, ir pagal vidurki"
