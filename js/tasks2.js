@@ -255,6 +255,22 @@ function getStudentModulesAverage(student) {
   // Math.round(num * 100) / 100
   return Math.round(avg * 100) / 100;
 }
+function getStudentModulesAverageReduce(student) {
+  // debugger;
+  let avg = student.modules.reduce(
+    (avg, currentVal) =>
+      avg + getModuleAverage(currentVal) / student.modules.length,
+    0
+  );
+  // Math.round(num * 100) / 100
+  return Math.round(avg * 100) / 100;
+}
+console.log("getStudentModulesAverage", getStudentModulesAverage(students[0]));
+console.log(
+  "getStudentModulesAverageReduce",
+  getStudentModulesAverageReduce(students[0])
+);
+
 // console.log("getStudentModulesAverage", students[0].modules);
 // getStudentModulesAverage(students[0]);
 
